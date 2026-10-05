@@ -1,177 +1,75 @@
-# hw02_community — Yatube
+<p align="center">
+  <img src=".github/assets/banner.svg" width="100%" alt="Yatube · Сообщества" />
+</p>
 
-**[Русский](#русский) | [English](#english)**
+# Yatube · Сообщества
 
----
+Лента публикаций и тематические группы на Django.
 
-## Русский
+**Учебный проект** · Python · Django 2.2.9 · SQLite · pytest-django  
+[Русский](#about) · [English](#english) · [Профиль](https://github.com/artemleonich)
 
-### Описание
+<a id="about"></a>
 
-Учебный проект — социальная платформа для публикации постов. Реализованы сообщества (группы), в которые пользователи могут объединять свои записи по тематикам. Проект создан в рамках курса Python-разработчик от Яндекс Практикума.
+## О проекте
 
-### Возможности
+Учебный этап проекта Yatube из курса Python-разработчика [Яндекс Практикума](https://practicum.yandex.ru/). Основной фокус — модели публикаций и групп, ORM, представления и HTML-шаблоны.
 
-- Просмотр ленты всех постов на главной странице
-- Группировка постов по тематическим сообществам
-- Страница сообщества с фильтрацией постов по группе
-- Админ-зона Django для управления контентом
+- Главная страница с десятью последними публикациями.
+- Страница группы с десятью последними записями этой группы.
+- Связь публикации с автором и необязательной группой.
+- Админ-панель Django для управления авторами, группами и публикациями.
 
-### Технологии
+Публикации и группы на этом этапе создаются через админ-панель. Веб-формы публикации появляются в [hw03_forms](https://github.com/artemleonich/hw03_forms).
 
-- Python 3.7+
-- Django 2.2.9
-- SQLite
-- pytest
-
-### Структура проекта
-
-```
-hw02_community/
-├── yatube/
-│   ├── posts/          # Приложение постов и сообществ
-│   │   ├── models.py   # Модели Post и Group
-│   │   ├── views.py    # Представления (главная, страница группы)
-│   │   ├── urls.py     # Маршруты приложения
-│   │   └── admin.py    # Настройка админ-панели
-│   ├── templates/      # HTML-шаблоны
-│   ├── static/         # Статические файлы
-│   └── yatube/         # Настройки проекта
-├── tests/              # Автотесты
-├── requirements.txt
-└── README.md
-```
-
-### Запуск проекта
-
-Клонируйте репозиторий:
+## Запуск
 
 ```bash
 git clone https://github.com/artemleonich/hw02_community.git
 cd hw02_community
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python yatube/manage.py migrate
+python yatube/manage.py createsuperuser
+python yatube/manage.py runserver
 ```
 
-Создайте и активируйте виртуальное окружение:
+В Windows PowerShell: `.venv\Scripts\Activate.ps1`.
+
+Откройте [127.0.0.1:8000](http://127.0.0.1:8000/). Учётная запись суперпользователя нужна для [админ-панели](http://127.0.0.1:8000/admin/), где можно добавить группы и публикации.
+
+## Проверка
+
+Учебные проверки находятся в `tests/`.
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python -m pytest
 ```
 
-Установите зависимости:
+## Навигация по коду
 
-```bash
-pip install -r requirements.txt
-```
+| Путь | Назначение |
+| --- | --- |
+| [yatube/posts/](yatube/posts/) | Модели и представления |
+| [yatube/templates/](yatube/templates/) | Шаблоны интерфейса |
+| [yatube/yatube/settings.py](yatube/yatube/settings.py) | Настройки и SQLite |
+| [tests/](tests/) | Учебные проверки |
 
-Выполните миграции:
+Зависимости сохранены в учебных версиях из [requirements.txt](requirements.txt). Запуск на новых версиях Python может потребовать адаптации окружения.
 
-```bash
-cd yatube
-python3 manage.py migrate
-```
+<a id="english"></a>
 
-Запустите сервер разработки:
+<details>
+<summary>English overview</summary>
 
-```bash
-python3 manage.py runserver
-```
+A Yandex Practicum learning stage focused on Django models, ORM queries and templates. It shows the latest ten posts on the home page and on each group page; content is managed through Django admin. The later [hw03_forms](https://github.com/artemleonich/hw03_forms) stage adds web forms.
 
-Проект будет доступен по адресу http://127.0.0.1:8000/
+Install `requirements.txt` in a virtual environment, run `python yatube/manage.py migrate`, optionally create an admin account with `python yatube/manage.py createsuperuser`, and start `python yatube/manage.py runserver`. Run `python -m pytest` from the repository root. Dependencies are pinned to the original learning versions.
 
-### Запуск тестов
-
-```bash
-pytest
-```
-
-### Автор
-
-Артём — [GitHub](https://github.com/artemleonich)
+</details>
 
 ---
 
-## English
+Автор: [Артём Леонов](https://github.com/artemleonich).
 
-### Description
-
-A learning project — a social platform for publishing posts. Features thematic communities (groups) that allow users to organize their posts by topic. Built as part of the Yandex Practicum Python Developer course.
-
-### Features
-
-- View a feed of all posts on the main page
-- Group posts by thematic communities
-- Community page with posts filtered by group
-- Django admin panel for content management
-
-### Tech Stack
-
-- Python 3.7+
-- Django 2.2.9
-- SQLite
-- pytest
-
-### Project Structure
-
-```
-hw02_community/
-├── yatube/
-│   ├── posts/          # Posts and communities app
-│   │   ├── models.py   # Post and Group models
-│   │   ├── views.py    # Views (index, group page)
-│   │   ├── urls.py     # URL routing
-│   │   └── admin.py    # Admin panel configuration
-│   ├── templates/      # HTML templates
-│   ├── static/         # Static files
-│   └── yatube/         # Project settings
-├── tests/              # Automated tests
-├── requirements.txt
-└── README.md
-```
-
-### Getting Started
-
-Clone the repository:
-
-```bash
-git clone https://github.com/artemleonich/hw02_community.git
-cd hw02_community
-```
-
-Create and activate a virtual environment:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run migrations:
-
-```bash
-cd yatube
-python3 manage.py migrate
-```
-
-Start the development server:
-
-```bash
-python3 manage.py runserver
-```
-
-The project will be available at http://127.0.0.1:8000/
-
-### Running Tests
-
-```bash
-pytest
-```
-
-### Author
-
-Artem — [GitHub](https://github.com/artemleonich)
